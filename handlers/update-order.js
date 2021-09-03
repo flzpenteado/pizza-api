@@ -17,6 +17,7 @@ const updateOrder = (id, order) => {
       ":pizzaId": order.pizzaId,
       ":address": order.address,
     },
+    ReturnValues: 'ALL_NEW'
   };
 
   return docClient.update(params)
