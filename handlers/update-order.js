@@ -22,7 +22,7 @@ const updateOrder = (id, order) => {
 
   return docClient.update(params)
   .promise()
-  .then(result => console.log('Order updated.'))
+  .then(result => result.Attributes)
   .catch(error => {
       console.log('Order is not updated. ', error)
       throw error

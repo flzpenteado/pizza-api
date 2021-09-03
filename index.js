@@ -20,7 +20,6 @@ api.get('/pizzas/{id}', request => getPizzas(request.pathParams.id), {
 })
 
 // Order
-
 api.get('/orders', () => getOrders())
 
 api.get('/orders/{id}', request => getOrders(request.pathParams.id), {
