@@ -1,17 +1,17 @@
-const pizzas = require("../data/pizzas.json")
+const pizzas = require('../data/pizzas.json')
 
 const getPizzas = id => {
-    if (!id) {
-        return pizzas
-    }
+  if (!id) {
+    return pizzas
+  }
 
-    const pizza = pizzas.find(pizza => pizza.id == id)
+  const pizza = pizzas.find(pizza => pizza.id == id)
 
-    if (!pizza) {
-        throw new Error("Pizza not found")
-    }
+  if (!pizza) {
+    throw new Error('Pizza not found')
+  }
 
-    return pizza
+  return pizza
 }
 
 module.exports = getPizzas

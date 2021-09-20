@@ -6,6 +6,7 @@ const createOrder = require('./handlers/create-order')
 const updateOrder = require('./handlers/update-order')
 const deleteOrder = require('./handlers/delete-order')
 const getOrders = require('./handlers/get-orders')
+const updateDeliveryStatus = require('./handlers/update-delivery-status')
 
 const api = new Api()
 
@@ -16,26 +17,36 @@ api.get('/', () => 'Pizza Api')
 api.get('/pizzas', () => getPizzas())
 
 api.get('/pizzas/{id}', request => getPizzas(request.pathParams.id), {
-    error: 404
+  error: 404
 })
 
 // Order
 api.get('/orders', () => getOrders())
 
 api.get('/orders/{id}', request => getOrders(request.pathParams.id), {
-    error: 404
+  error: 404
 })
-api.post('/orders', request => createOrder(request.body), {
-    success: 201,
-    error: 400
+api.post('/delivery', request => updateDeliveryStatus(request.body), {
+  success: 201,
+  error: 400
 })
 
-api.put('/orders/{id}', request => updateOrder(request.pathParams.id, request.body), {
+api.put(
+  '/orders/{id}',
+  (request) => updateOrder(request.pathParams.id, request.body),
+  {
     error: 400
-} )
+  }
+)
 
 api.delete('/orders/{id}', request => deleteOrder(request.pathParams.id), {
-    error: 400
+  error: 400
+})
+
+// Delivery
+api.post('/orders', request => createOrder(request.body), {
+  success: 201,
+  error: 400
 })
 
 module.exports = api

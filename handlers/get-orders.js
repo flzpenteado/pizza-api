@@ -1,23 +1,23 @@
-const AWS = require("aws-sdk");
+const AWS = require('aws-sdk')
 
-const docClient = new AWS.DynamoDB.DocumentClient();
+const docClient = new AWS.DynamoDB.DocumentClient()
 
 const getOrders = (id) => {
-  if (typeof id === "undefined") {
+  if (typeof id === 'undefined') {
     return docClient
       .scan({
-        TableName: "orders",
+        TableName: 'orders'
       })
       .promise()
       .then(result => result.Items)
   }
 
   return docClient.get({
-    TableName: "orders",
+    TableName: 'orders',
     Key: { id }
   })
-  .promise()
-  .then(result => result.Item)
+    .promise()
+    .then(result => result.Item)
 }
 
 module.exports = getOrders
